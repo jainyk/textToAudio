@@ -46,13 +46,14 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
       with:
-        projectBaseDir: textToAudioApp
+#        projectBaseDir: textToAudioApp
         args: >
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
           -Dsonar.host.url=${{ secrets.SONAR_URL }}
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.sources=src/
+          -Dsonar.projectBaseDir=textToAudioApp
+#          -Dsonar.sources=src/
           -Dsonar.verbose=true
 
 
