@@ -660,7 +660,7 @@ def edit_and_regenerate(edited_transcript, user_feedback, *args):
     #new_args = list(args)
     #new_args[-2] = edited_transcript  # Update edited transcript
     #new_args[-1] = user_feedback  # Update user feedback
-    return validate_and_generate_audio(*new_args)
+    return validate_and_generate_audio(*args)
 
 # New function to handle user feedback and regeneration
 def process_feedback_and_regenerate(feedback, *args):
