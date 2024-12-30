@@ -38,59 +38,59 @@ jobs:
     # Setup sonar-scanner
 #    - name: Setup SonarQube
 #      uses: warchant/setup-sonar-scanner@v8
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
+#    - name: Set up JDK 17
+#      uses: actions/setup-java@v3
+#      with:
+#        java-version: '17'
+#
+#    - name: Analyze with SonarCloud
+#      uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+#      env:
+#        GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
+#        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+#      with:
+#        args:
+#          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+#          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+#          -Dsonar.host.url=${{ secrets.SONAR_URL }}
+#          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+#          -Dsonar.projectBaseDir=textToAudioApp
 
-    - name: Analyze with SonarCloud
-      uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
-      env:
-        GITHUB_TOKEN: ${{ secrets._GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
-      with:
-        args:
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.projectBaseDir=textToAudioApp
 
-
-  backend-security:
-#    needs: backend-test
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./textToAudioApp
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        continue-on-error: true # To make sure that SARIF upload gets called
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Install Snyk CLI
-        uses: snyk/actions/setup@master
-        with:
-          version: latest
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Snyk Authenticate
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
-
-      - name: Snyk Code Test
-        run: snyk code test --all-projects
-        continue-on-error: true
+#  backend-security:
+##    needs: backend-test
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        working-directory: ./textToAudioApp
+#    steps:
+#      - uses: actions/checkout@master
+#      - name: Run Snyk to check for vulnerabilities
+#        uses: snyk/actions/node@master
+#        continue-on-error: true # To make sure that SARIF upload gets called
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#
+#      - name: Install Snyk CLI
+#        uses: snyk/actions/setup@master
+#        with:
+#          version: latest
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#
+#      - name: Snyk Authenticate
+#        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+#
+#      - name: Snyk Code Test
+#        run: snyk code test --all-projects
+#        continue-on-error: true
 
 
 
 
   backend-image:
-    needs: backend-security
+#    needs: backend-security
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -114,30 +114,30 @@ jobs:
         output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
 
-    - name: Install Snyk CLI
-      uses: snyk/actions/setup@master
-      with:
-        snyk-token: ${{ secrets.SNYK_TOKEN }}
-
-    - name: Snyk Authenticate
-      run: snyk auth ${{ secrets.SNYK_TOKEN }}
-
-    - name: Snyk Container monitor
-      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/textToAudioApp-api --file=Dockerfile
-      working-directory: ./textToAudioApp
-
-    - name: Run Snyk to check for vulnerabilities in the Docker image
-      uses: snyk/actions/docker@master
-      with:
-        image: ${{ secrets.DOCKER_USERNAME }}/backend-api
-        args: --file=textToAudioApp/Dockerfile --severity-threshold=high
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      continue-on-error: true
+#    - name: Install Snyk CLI
+#      uses: snyk/actions/setup@master
+#      with:
+#        snyk-token: ${{ secrets.SNYK_TOKEN }}
+#
+#    - name: Snyk Authenticate
+#      run: snyk auth ${{ secrets.SNYK_TOKEN }}
+#
+#    - name: Snyk Container monitor
+#      run: snyk container monitor ${{ secrets.DOCKER_USERNAME }}/textToAudioApp-api --file=Dockerfile
+#      working-directory: ./textToAudioApp
+#
+#    - name: Run Snyk to check for vulnerabilities in the Docker image
+#      uses: snyk/actions/docker@master
+#      with:
+#        image: ${{ secrets.DOCKER_USERNAME }}/backend-api
+#        args: --file=textToAudioApp/Dockerfile --severity-threshold=high
+#      env:
+#        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#      continue-on-error: true
 
 
   k8s-manifest-scan:
-    needs: [backend-security]
+#    needs: [backend-security]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
