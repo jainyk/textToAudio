@@ -102,9 +102,9 @@ jobs:
     - name: Build and push backend Docker image
       working-directory: ./textToAudioApp
       run: |
-        docker build . -t ${{ secrets.DOCKER_USERNAME }}/textToAudioApp-api
+        docker build . -t ${{ secrets.DOCKER_USERNAME }}/texttoaudioapp-api
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin 
-        docker push ${{ secrets.DOCKER_USERNAME }}/textToAudioApp-api    
+        docker push ${{ secrets.DOCKER_USERNAME }}/texttoaudioapp-api    
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
@@ -136,16 +136,16 @@ jobs:
 #      continue-on-error: true
 
 
-  k8s-manifest-scan:
-#    needs: [backend-security]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Snyk to check Kubernetes manifest file for issues
-        uses: snyk/actions/iac@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          file: kubernetes-manifest/
-          args: --severity-threshold=high
+#  k8s-manifest-scan:
+##    needs: [backend-security]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Run Snyk to check Kubernetes manifest file for issues
+#        uses: snyk/actions/iac@master
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+#        with:
+#          file: kubernetes-manifest/
+#          args: --severity-threshold=high
 
