@@ -36,8 +36,8 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     # Setup sonar-scanner
-    - name: Setup SonarQube
-      uses: warchant/setup-sonar-scanner@v8
+#    - name: Setup SonarQube
+#      uses: warchant/setup-sonar-scanner@v8
 
     - name: Analyze with SonarCloud
       uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
