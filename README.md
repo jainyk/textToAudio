@@ -472,7 +472,7 @@ Then go to Security and click on New Access Token. Give it a name in the Access 
 
 ![Screenshot 2024-02-28 at 10 58 48 AM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/e7087161-6959-4939-9524-4543bdc24b12)
 
-![Screenshot 1518](https://github.com/jainyk/reactjs/blob/main/.github/workflows/Screenshot%20(1518).png)
+![Screenshot 1518](https://github.com/jainyk/textToAudio/blob/main/.github/workflows/Capture1.PNG)
 
 
 ### Step 7: Configure Sonar Cloud for our app_code Pipeline
