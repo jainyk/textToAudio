@@ -206,7 +206,6 @@ Before starting this project, ensure you have the following prerequisites:
      ```
      If your main branch is named differently (e.g., **main**), replace **master** with the correct branch name.
 
-     TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 4. **Verify the Push:**
    - Refresh the GitHub page of your repository to see if the code has been pushed successfully.
@@ -265,7 +264,6 @@ Here, you will see that you got the credentials and also you can download the CS
 2. **Access the Repository Settings:**
    - Click on the "Settings" tab near the top of the repository page.
 
-TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 3. **Open the Secrets Section:**
    - On the left sidebar, click on "Secrets and variables."
@@ -430,6 +428,23 @@ Create the IAM policy using the below command
 ```
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
 ```
+EDIT ABOVE POLICY AND ADD BELOW
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticloadbalancing:DescribeListenerAttributes" 
+            ],
+            "Resource": "*" 
+        }
+    ]
+}
+
+```
+
 #### Create OIDC Provider
 To allows the cluster to integrate with AWS IAM for assigning IAM roles to Kubernetes service accounts, enhancing security and management.
 ```
@@ -858,16 +873,13 @@ In the Path, provide the location where your Manifest files are presented and pr
 Click on CREATE.
 
 
-![Screenshot 2024-03-09 at 7 30 10 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/b8ee0f79-0528-464a-beec-cbbf7e544be8)
 
 
 ArgoCD will deploy all the application in the kubernetes-manifest folder
 
-![Screenshot 1528](https://github.com/jainyk/reactjs/blob/main/.github/workflows/Screenshot%20(1528).png)
 
 Deployment is synced and healthy 
 
-![Screenshot 2024-03-13 at 2 16 57 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/31853ad3-bcec-4089-864d-abf3623d67de)
 
 
 Once your Ingress application is deployed. It will create an Application Load Balancer
@@ -875,7 +887,6 @@ You can check out the load balancer named with k8s-ingress.
 
 Now, Copy the ALB-DNS and go to your Domain Provider in this case AWS Route 53 is the domain provider.
 
-![Screenshot 2024-02-28 at 6 42 29 PM](https://github.com/cloudcore-hub/Kubernetes-DevSecOps-CI-CD-Project/assets/88560609/f5d7bcee-8238-4298-aefd-e017763e426e)
 
 ### Step 13: Creating an A-Record in AWS Route 53 Using ALB DNS
 Create A-records using DNS service in aws [Route53].
@@ -899,7 +910,6 @@ From the route53 portal, copy the nameserver provided by AWS and go to godaddy D
 
 #### 4: Create Record
 
-TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 
 - Click on the "Create record" button.
 - In the "Record name" field, enter the subdomain or leave it blank for the root domain.
@@ -909,7 +919,7 @@ TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 - Choose the ALB (it's identified by its DNS name) from the dropdown.
 - (Optional) Adjust the "Routing policy" and "Record ID" as needed.
 
-TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+
 
 #### 4: Confirm and Create
 
@@ -921,24 +931,10 @@ By following these steps, you'll successfully create an A-record in AWS Route 53
 Share the seederleecher.in
 
 
-![Screenshot 1529](https://github.com/jainyk/reactjs/blob/main/.github/workflows/Screenshot%20(1529).png)
 
 Logged into the simple quiz application 
 
-![Screenshot 2024-03-13 at 3 12 35 PM](https://github.com/cloudcore-hub/reactjs-quiz-app/assets/88560609/be005a73-d401-4182-a357-14fee0347026)
 
-
-More Grafana dashboard IDs to try 
-
-| Dashboard                          | ID    |
-|------------------------------------|-------|
-| k8s-addons-prometheus.json         | 19105 |
-| k8s-system-api-server.json         | 15761 |
-| k8s-system-coredns.json            | 15762 |
-| k8s-views-global.json              | 15757 |
-| k8s-views-namespaces.json          | 15758 |
-| k8s-views-nodes.json               | 15759 |
-| k8s-views-pods.json                | 15760 |
 
 
 For Global 
