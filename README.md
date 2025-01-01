@@ -2,7 +2,7 @@
 
 This code can be used to convert PDFs into audio podcasts, lectures, summaries, and more. It uses OpenAI's GPT models for text generation and text-to-speech conversion. You can also edit a draft transcript (multiple times) and provide specific comments, or overall directives on how it could be adapted or improved. 
 
-![image](https://github.com/user-attachments/assets/ef8a5e84-d532-4e0e-b08b-fb7be2f98469)
+![image](https://github.com/jainyk/textToAudio/blob/main/.github/workflows/Capture.PNG)
 
 ## Features
 
@@ -12,9 +12,7 @@ This code can be used to convert PDFs into audio podcasts, lectures, summaries, 
 - Select different voices for speakers
 - Iterate on the draft via specific or general commments, and/or edits to the transcript and specific feedback to the model for improvements
 
-## Use in Colab
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lamm-mit/PDF2Audio/blob/main/PDF2Audio.ipynb)
 
 ## Local Installation
 
@@ -22,7 +20,7 @@ Follow these steps to set up PDF2Audio on your local machine using Conda:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/lamm-mit/PDF2Audio.git
+   git clone https://github.com/jainyk/textToAudio.git
    cd PDF2Audio
    ```
 
@@ -73,6 +71,8 @@ To run the PDF2Audio app:
 
 4. Use the Gradio interface to upload a PDF file and convert it to audio.
 
+5. Set share=True for generating shareale link.
+
 ## How to Use
 
 1. Upload one or more PDF files
@@ -80,17 +80,6 @@ To run the PDF2Audio app:
 3. Customize the instructions if needed
 4. Click "Generate Audio" to create your audio content
 
-## Access via 🤗 Hugging Face Spaces
-
-[lamm-mit/PDF2Audio](https://huggingface.co/spaces/lamm-mit/PDF2Audio)
-
-
-## Example result
-
-<audio controls>
-  <source src="[https://user-images.githubusercontent.com/your-username/your-repo/path-to-audio-file.mp3](https://raw.githubusercontent.com/lamm-mit/PDF2Audio/main/SciAgents%20discovery%20summary%20-%20example.mp3)" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 
 ## Note
 
