@@ -880,4 +880,4 @@ demo.queue(max_size=20, default_concurrency_limit=32)
 
 # Launch the Gradio app
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch()
