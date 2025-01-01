@@ -13,7 +13,7 @@ spec:
     - host: seederleecher.in
       http:
         paths:
-          - path: /api/questions
+          - path: /
             pathType: Prefix
             backend:
               service:
