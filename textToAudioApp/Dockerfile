@@ -1,20 +1,33 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-slim
+# Use the official Python 3.9 slim image as the base
+FROM python:3.9-slim
+
+# Set environment variables to prevent Python from writing .pyc files and to buffer outputs
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file first to leverage Docker's caching
-COPY requirements.txt /app/
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies from requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the requirements file into the container
+COPY requirements.txt .
 
-# Copy the rest of the application files into the container
-COPY . /app
+# Upgrade pip and install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Expose the port the Gradio app will run on
+# Copy the rest of the application code into the container
+COPY . .
+
+# Expose the port that Gradio uses
 EXPOSE 7860
 
-# Command to run the application
+# Define environment variable for OpenAI API Key (to be provided at runtime)
+#ENV OPENAI_API_KEY=""
+
+# Specify the command to run the application
 CMD ["python", "app.py"]
