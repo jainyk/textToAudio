@@ -880,4 +880,4 @@ demo.queue(max_size=20, default_concurrency_limit=32)
 
 # Launch the Gradio app
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(share=True)
